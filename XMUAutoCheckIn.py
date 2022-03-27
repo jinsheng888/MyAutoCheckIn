@@ -1,3 +1,4 @@
+
 import json
 import logging
 import os
@@ -166,7 +167,7 @@ def checkin(username, passwd, passwd_vpn, email, use_vpn=True) -> None:
         time.sleep(1)
     driver.close()
     logger.info("打卡成功")
-    send_mail(f"账号【{username}】打卡成功", "打卡成功", email)
+    send_mail(f"账号【{username}】打卡成功", "maoli : 早上好，打卡成功!", email)
 
 
 def send_mail(msg: str, title: str, to: str):
@@ -239,7 +240,7 @@ def main():
                 except Exception as e:
                     fail("尝试失败", "打卡失败", "", e, shutdown=False)
         fail(f"账号【{config['username']}】重试10次后依然打卡失败，请排查日志",
-             "打卡失败", config["email"])
+             "maoli : 打卡失败", config["email"])
 
 
 if __name__ == '__main__':
