@@ -142,7 +142,7 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
     下拉框XPATH     选项XPATH    下拉框描述
     的顺序添加项并提交PR
     """
-    if int(username) / (10**11) == 229:
+    if int(int(username) / (10**11)) == 229:
         dropdowns = [
             ['//*[@id="select_1611108284522"]/div/div/span[1]', '//label[@title="在校"][1]', '在校'],
             ['//*[@id="select_1582538643070"]/div/div/span[1]', '//label[@title="翔安校区 Xiang\'an"][1]', '校区'],
@@ -160,7 +160,7 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
                 time.sleep(1)
             else:
                 logger.info(f'{dropdown[2]} 已填写')
-    elif int(username) / (10**11) == 119:
+    elif int(int(username) / (10**11)) == 119:
         dropdowns = [
             ['//*[@id="select_1611108284522"]/div/div/span[1]', '//label[@title="在校"][1]', '在校'],
             ['//*[@id="select_1582538643070"]/div/div/span[1]', '//label[@title="思明校区 Siming"][1]', '校区'],
