@@ -81,7 +81,7 @@ def select_dropdown(driver: WebDriver, dropdown_xpath: str, target_xpath: str, c
     click_given_xpath(driver, target_xpath, f"{comment} 选项")
 
 
-def checkin(username, passwd, passwd_vpn, email, use_vpn=True) -> None:
+def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
     if debug:
         driver = webdriver.Edge()
     else:
@@ -142,18 +142,41 @@ def checkin(username, passwd, passwd_vpn, email, use_vpn=True) -> None:
     下拉框XPATH     选项XPATH    下拉框描述
     的顺序添加项并提交PR
     """
-    dropdowns = [
-        ['//*[@id="address_1582538163410"]/div/div[1]/div/div', '//label[@title="福建省"][1]', '省'],
-        ['//*[@id="address_1582538163410"]/div/div[2]/div/div', '//label[@title="厦门市"][1]', '市'],
-        ['//*[@id="address_1582538163410"]/div/div[3]/div/div', '//label[@title="翔安区"][1]', '区'],
-        ["//*[@id='select_1582538939790']/div/div/span[1]", "/html/body/div[8]/ul/div/div[3]/li/label", '本人承诺']
-    ]
+    if username / (10**11) == 229:
+        dropdowns = [
+            ['//*[@id="select_1611108284522"]/div/div/span[1]', '//label[@title="在校"][1]', '在校'],
+            ['//*[@id="select_1582538643070"]/div/div/span[1]', '//label[@title="翔安校区 Xiang\'an"][1]', '校区'],
+            ['//*[@id="select_1611110401193"]/div/div/span[1]', '//label[@title="住校内  Yes，on campus"][1]', '校内'],
+            ['//*[@id="select_1611108377024"]/div/div/span[1]', '//label[@title="住校内学生宿舍"][1]', '宿舍'],
+            ['//*[@id="select_1611108445364"]/div/div/span[1]', '//label[@title="翔安笃行10"][1]', '楼'],
+            ['//*[@id="address_1582538163410"]/div/div[1]/div/div', '//label[@title="福建省"][1]', '省'],
+            ['//*[@id="address_1582538163410"]/div/div[2]/div/div', '//label[@title="厦门市"][1]', '市'],
+            ['//*[@id="address_1582538163410"]/div/div[3]/div/div', '//label[@title="翔安区"][1]', '区'],
+            ["//*[@id='select_1582538939790']/div/div/span[1]", "/html/body/div[8]/ul/div/div[3]/li/label", '本人承诺']
+        ]
+    elif username / (10**11) == 119:
+        dropdowns = [
+            ['//*[@id="select_1611108284522"]/div/div/span[1]', '//label[@title="在校"][1]', '在校'],
+            ['//*[@id="select_1582538643070"]/div/div/span[1]', '//label[@title="思明校区 Siming"][1]', '校区'],
+            ['//*[@id="select_1611110401193"]/div/div/span[1]', '//label[@title="住校内  Yes，on campus"][1]', '校内'],
+            ['//*[@id="select_1611108377024"]/div/div/span[1]', '//label[@title="住校内学生宿舍"][1]', '宿舍'],
+            ['//*[@id="select_1611108445364"]/div/div/span[1]', '//label[@title="思明石井01"][1]', '楼'],
+            ['//*[@id="address_1582538163410"]/div/div[1]/div/div', '//label[@title="福建省"][1]', '省'],
+            ['//*[@id="address_1582538163410"]/div/div[2]/div/div', '//label[@title="厦门市"][1]', '市'],
+            ['//*[@id="address_1582538163410"]/div/div[3]/div/div', '//label[@title="思明区"][1]', '区'],
+            ["//*[@id='select_1582538939790']/div/div/span[1]", "/html/body/div[8]/ul/div/div[3]/li/label", '本人承诺']
+        ]
+
     for dropdown in dropdowns:
         if NULL in get_text(driver, dropdown[0], dropdown[2]):
             select_dropdown(driver, *dropdown)
             time.sleep(1)
         else:
             logger.info(f'{dropdown[2]} 已填写')
+
+    roomnum = driver.find_element(By.XPATH, "//*[@id='input_1611108449736']/input")
+    if roomnum.get_attribute('value') == '':
+        roomnum.send_keys(room) 
 
     # 点击保存按钮
     click_given_xpath(driver, "//span[starts-with(text(),'保存')][1]", "保存")
@@ -180,7 +203,7 @@ def send_mail(msg: str, title: str, to: str):
         logger.info(msg)
 
 
-CONFIG_KEYS = ["username", "password", "password_vpn", "email"]
+CONFIG_KEYS = ["username", "password", "password_vpn", "email", "room"]
 
 
 def fail(msg: str, title: str, email: str = "", e: Exception = None, shutdown=True, run_fail=False):
@@ -227,7 +250,8 @@ def main():
                     config["username"],
                     config["password"],
                     config["password_vpn"],
-                    config['email'], False
+                    config['email'],
+                    config['room'], False
                 )
                 success = True
                 break
@@ -238,7 +262,8 @@ def main():
                         config["username"],
                         config["password"],
                         config["password_vpn"],
-                        config['email'], True
+                        config['email'],
+                        config['room'], True
                     )
                     success = True
                     break
