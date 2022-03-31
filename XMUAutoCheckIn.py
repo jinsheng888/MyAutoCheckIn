@@ -180,7 +180,7 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
                 logger.info(f'{dropdown[2]} 已填写')
 
     roomnum = driver.find_element(By.XPATH, "//*[@id='input_1611108449736']/input")
-    if roomnum.get_attribute('value') == '':
+    if roomnum.get_attribute('data-str') == '':
         roomnum.send_keys(room) 
 
     # 点击保存按钮
