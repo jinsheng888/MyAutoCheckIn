@@ -142,6 +142,7 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
     下拉框XPATH     选项XPATH    下拉框描述
     的顺序添加项并提交PR
     """
+    global dropdowns
     if int(username) / (10**11) == 229:
         dropdowns = [
             ['//*[@id="select_1611108284522"]/div/div/span[1]', '//label[@title="在校"][1]', '在校'],
