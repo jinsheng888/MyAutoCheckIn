@@ -142,7 +142,6 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
     下拉框XPATH     选项XPATH    下拉框描述
     的顺序添加项并提交PR
     """
-    global dropdowns
     if int(username) / (10**11) == 229:
         dropdowns = [
             ['//*[@id="select_1611108284522"]/div/div/span[1]', '//label[@title="在校"][1]', '在校'],
@@ -155,6 +154,12 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
             ['//*[@id="address_1582538163410"]/div/div[3]/div/div', '//label[@title="翔安区"][1]', '区'],
             ["//*[@id='select_1582538939790']/div/div/span[1]", "/html/body/div[8]/ul/div/div[3]/li/label", '本人承诺']
         ]
+        for dropdown in dropdowns:
+            if NULL in get_text(driver, dropdown[0], dropdown[2]):
+                select_dropdown(driver, *dropdown)
+                time.sleep(1)
+            else:
+                logger.info(f'{dropdown[2]} 已填写')
     elif int(username) / (10**11) == 119:
         dropdowns = [
             ['//*[@id="select_1611108284522"]/div/div/span[1]', '//label[@title="在校"][1]', '在校'],
@@ -167,13 +172,12 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
             ['//*[@id="address_1582538163410"]/div/div[3]/div/div', '//label[@title="思明区"][1]', '区'],
             ["//*[@id='select_1582538939790']/div/div/span[1]", "/html/body/div[8]/ul/div/div[3]/li/label", '本人承诺']
         ]
-
-    for dropdown in dropdowns:
-        if NULL in get_text(driver, dropdown[0], dropdown[2]):
-            select_dropdown(driver, *dropdown)
-            time.sleep(1)
-        else:
-            logger.info(f'{dropdown[2]} 已填写')
+        for dropdown in dropdowns:
+            if NULL in get_text(driver, dropdown[0], dropdown[2]):
+                select_dropdown(driver, *dropdown)
+                time.sleep(1)
+            else:
+                logger.info(f'{dropdown[2]} 已填写')
 
     roomnum = driver.find_element(By.XPATH, "//*[@id='input_1611108449736']/input")
     if roomnum.get_attribute('value') == '':
