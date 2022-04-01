@@ -148,7 +148,7 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
             ['//*[@id="select_1582538643070"]/div/div/span[1]', '//label[@title="翔安校区 Xiang\'an"][1]', '校区'],
             ['//*[@id="select_1611110401193"]/div/div/span[1]', '//label[@title="住校内  Yes，on campus"][1]', '校内'],
             ['//*[@id="select_1611108377024"]/div/div/span[1]', '//label[@title="住校内学生宿舍"][1]', '宿舍'],
-            ['//*[@id="select_1611108445364"]/div/div/span[1]', '//label[@title="翔安笃行10"][1]', '楼'],
+            ['//*[@id="select_1611108445364"]/div/div/span[1]', '//label[@title="翔安笃行09"][1]', '楼'],
             ['//*[@id="address_1582538163410"]/div/div[1]/div/div', '//label[@title="福建省"][1]', '省'],
             ['//*[@id="address_1582538163410"]/div/div[2]/div/div', '//label[@title="厦门市"][1]', '市'],
             ['//*[@id="address_1582538163410"]/div/div[3]/div/div', '//label[@title="翔安区"][1]', '区'],
