@@ -2,19 +2,6 @@
 
 ![](image/new_ex.png)
 
-{
-  "config":[
-    {
-    "username":"1234567890", //学号
-    "password":"mypassword1",
-    "password"_vpn":"mypassword2",
-    "email":"myemail@qq.com",
-    "room":"1234"
-    }
-  ]
-}
-
-
 ## 特别鸣谢 lovemaoli
 
 以下是原来的readme.md
