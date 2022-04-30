@@ -1,3 +1,24 @@
+# 个人的一些变更 关于CONFIG
+
+![](image/new_ex.png)
+
+{
+  "config":[
+    {
+    "username":"1234567890", //学号
+    "password":"mypassword1",
+    "password"_vpn":"mypassword2",
+    "email":"myemail@qq.com",
+    "room":"1234"
+    }
+  ]
+}
+
+
+## 特别鸣谢 lovemaoli
+
+以下是原来的readme.md
+
 # XMU每日打卡
 
 祝贺项目三岁啦！
@@ -221,7 +242,3 @@ Pull Request操作其实就是在仓库间进行同步，将右侧仓库的内�
 + [AiRanthem](https://github.com/AiRanthem) 项目维护
 
 PhoenixLjw 同学已经毕业，不再参与项目。如有建议，欢迎与 AiRanthem 联系。
-
-## 一些变更 关于CONFIG
-
-![](image/new_ex.png)
