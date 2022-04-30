@@ -223,4 +223,5 @@ Pull Request操作其实就是在仓库间进行同步，将右侧仓库的内�
 PhoenixLjw 同学已经毕业，不再参与项目。如有建议，欢迎与 AiRanthem 联系。
 
 ## 一些变更 关于CONFIG
+
 ![](image/new_ex.png)
