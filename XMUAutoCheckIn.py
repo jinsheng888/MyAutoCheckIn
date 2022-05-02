@@ -144,10 +144,10 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
     """
     if int(int(username) / (10**11)) == 229:
         dropdowns = [
+            ['//*[@id="input_1611108030781"]','//label[@type="地址"][1]','地址'],
             ['//*[@id="address_1582538163410"]/div/div[1]/div/div', '//label[@title="福建省"][1]', '省'],
             ['//*[@id="address_1582538163410"]/div/div[2]/div/div', '//label[@title="福州市"][1]', '市'],
             ['//*[@id="address_1582538163410"]/div/div[3]/div/div', '//label[@title="仓山区"][1]', '区'],
-            # ['//*[@id="input_1611108030781"]','//label[@type="地址"][1]','地址'],
             ['//*[@id="select_1611108284522"]/div/div/span[1]', '//label[@title="不在校"][1]', '不在校'],
             ["//*[@id='select_1582538939790']/div/div/span[1]", "/html/body/div[8]/ul/div/div[3]/li/label", '本人承诺']
         ]
