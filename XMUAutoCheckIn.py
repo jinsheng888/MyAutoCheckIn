@@ -152,11 +152,9 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
             ["//*[@id='select_1582538939790']/div/div/span[1]", "/html/body/div[8]/ul/div/div[3]/li/label", '本人承诺']
         ]
         for dropdown in dropdowns:
-            if dropdown[2] in get_text(driver, dropdown[0], dropdown[2]):
-                select_dropdown(driver, *dropdown)
-                time.sleep(1)
-            else:
-                logger.info(f'{dropdown[2]} 已填写')
+            select_dropdown(driver, *dropdown)
+            time.sleep(1)
+            logger.info(f'{dropdown[2]} 已填写')
     elif int(int(username) / (10**11)) == 119:
         dropdowns = [
             ['//*[@id="select_1611108284522"]/div/div/span[1]', '//label[@title="不在校"][1]', '不在校'],
