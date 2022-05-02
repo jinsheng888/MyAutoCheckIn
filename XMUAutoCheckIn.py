@@ -167,11 +167,9 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
             ["//*[@id='select_1582538939790']/div/div/span[1]", "/html/body/div[8]/ul/div/div[3]/li/label", '本人承诺']
         ]
         for dropdown in dropdowns:
-            if dropdown[2] in get_text(driver, dropdown[0], dropdown[2]):
-                select_dropdown(driver, *dropdown)
-                time.sleep(1)
-            else:
-                logger.info(f'{dropdown[2]} 已填写')
+            select_dropdown(driver, *dropdown)
+            time.sleep(1)
+            logger.info(f'{dropdown[2]} 已填写')
     time.sleep(1)
     roomnum = driver.find_element(By.CSS_SELECTOR, '#input_1611108449736 > input')
     if roomnum.get_attribute('data-str') == '':
@@ -250,7 +248,7 @@ def main():
                     config["password"],
                     config["password_vpn"],
                     config['email'],
-                    config['room'], False
+                    # config['room'], False
                 )
                 success = True
                 break
@@ -262,7 +260,7 @@ def main():
                         config["password"],
                         config["password_vpn"],
                         config['email'],
-                        config['room'], True
+                        # config['room'], True
                     )
                     success = True
                     break
