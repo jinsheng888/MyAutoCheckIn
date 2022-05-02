@@ -77,7 +77,7 @@ def get_text(driver: WebDriver, xpath: str, comment: str) -> str:
 
 def select_dropdown(driver: WebDriver, dropdown_xpath: str, target_xpath: str, comment: str):
     click_given_xpath(driver, dropdown_xpath, f"{comment} 下拉框")
-    time.sleep(1)
+    time.sleep(2)
     click_given_xpath(driver, target_xpath, f"{comment} 选项")
 
 
@@ -153,7 +153,7 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
         ]
         for dropdown in dropdowns:
             select_dropdown(driver, *dropdown)
-            time.sleep(1)
+            time.sleep(2)
             logger.info(f'{dropdown[2]} 已填写')
     elif int(int(username) / (10**11)) == 119:
         dropdowns = [
