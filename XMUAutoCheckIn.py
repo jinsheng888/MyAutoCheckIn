@@ -246,7 +246,7 @@ def main():
                     config["password"],
                     config["password_vpn"],
                     config['email'],
-                    # config['room'], False
+                    config['room'], False
                 )
                 success = True
                 break
@@ -258,7 +258,7 @@ def main():
                         config["password"],
                         config["password_vpn"],
                         config['email'],
-                        # config['room'], True
+                        config['room'], True
                     )
                     success = True
                     break
