@@ -152,7 +152,7 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
             ["//*[@id='select_1582538939790']/div/div/span[1]", "/html/body/div[8]/ul/div/div[3]/li/label", '本人承诺']
         ]
         for dropdown in dropdowns:
-            if NULL in get_text(driver, dropdown[0], dropdown[2]):
+            if dropdown[2] in get_text(driver, dropdown[0], dropdown[2]):
                 select_dropdown(driver, *dropdown)
                 time.sleep(1)
             else:
