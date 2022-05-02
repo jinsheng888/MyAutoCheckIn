@@ -238,7 +238,7 @@ def main():
     for config in configs:
         logger.info(f"账号【{config['username']}】正在运行")
         success = False
-        for i in range(1, 2 if debug else 11):
+        for i in range(1):
             logger.info(f'第{i}次尝试')
             try:
                 checkin(
