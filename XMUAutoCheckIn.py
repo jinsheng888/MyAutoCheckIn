@@ -15,7 +15,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.keys import Keys
 
 debug = os.getenv("ENV") == "debug"
 
@@ -143,67 +142,30 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
     下拉框XPATH     选项XPATH    下拉框描述
     的顺序添加项并提交PR
     """
-    if int(username) == 22920212204392:
-        dropdowns = [
-            ['//*[@id="select_1611108284522"]/div/div/span[1]', '//label[@title="不在校"][1]', '不在校'],
-            ['//*[@id="address_1582538163410"]/div/div[1]/div/div', '//label[@title="福建省"][1]', '省'],
-            ['//*[@id="address_1582538163410"]/div/div[2]/div/div', '//label[@title="福州市"][1]', '市'],
-            ['//*[@id="address_1582538163410"]/div/div[3]/div/div', '//label[@title="鼓楼区"][1]', '区'],
-            ["//*[@id='select_1582538939790']/div/div/span[1]", "/html/body/div[8]/ul/div/div[3]/li/label", '本人承诺']
-        ]
-        for dropdown in dropdowns:
-            if NULL in get_text(driver, dropdown[0], dropdown[2]):
-                select_dropdown(driver, *dropdown)
-                time.sleep(1)
-            else:
-                logger.info(f'{dropdown[2]} 已填写')
-    elif int(int(username) / (10**11)) == 229:
-        dropdowns = [
-            ['//*[@id="select_1611108284522"]/div/div/span[1]', '//label[@title="在校"][1]', '在校'],
-            ['//*[@id="select_1582538643070"]/div/div/span[1]', '//label[@title="翔安校区 Xiang\'an"][1]', '校区'],
-            ['//*[@id="select_1611110401193"]/div/div/span[1]', '//label[@title="住校内  Yes，on campus"][1]', '校内'],
-            ['//*[@id="select_1611108377024"]/div/div/span[1]', '//label[@title="住校内学生宿舍"][1]', '宿舍'],
-            ['//*[@id="select_1611108445364"]/div/div/span[1]', '//label[@title="翔安笃行09"][1]', '楼'],
-            ['//*[@id="address_1582538163410"]/div/div[1]/div/div', '//label[@title="福建省"][1]', '省'],
-            ['//*[@id="address_1582538163410"]/div/div[2]/div/div', '//label[@title="厦门市"][1]', '市'],
-            ['//*[@id="address_1582538163410"]/div/div[3]/div/div', '//label[@title="翔安区"][1]', '区'],
-            ["//*[@id='select_1582538939790']/div/div/span[1]", "/html/body/div[8]/ul/div/div[3]/li/label", '本人承诺']
-        ]
-        for dropdown in dropdowns:
-            if NULL in get_text(driver, dropdown[0], dropdown[2]):
-                select_dropdown(driver, *dropdown)
-                time.sleep(1)
-            else:
-                logger.info(f'{dropdown[2]} 已填写')
-    elif int(int(username) / (10**11)) == 119:
-        dropdowns = [
-            ['//*[@id="select_1611108284522"]/div/div/span[1]', '//label[@title="在校"][1]', '在校'],
-            ['//*[@id="select_1582538643070"]/div/div/span[1]', '//label[@title="思明校区 Siming"][1]', '校区'],
-            ['//*[@id="select_1611110401193"]/div/div/span[1]', '//label[@title="住校内  Yes，on campus"][1]', '校内'],
-            ['//*[@id="select_1611108377024"]/div/div/span[1]', '//label[@title="住校内学生宿舍"][1]', '宿舍'],
-            ['//*[@id="select_1611108445364"]/div/div/span[1]', '//label[@title="思明石井01"][1]', '楼'],
-            ['//*[@id="address_1582538163410"]/div/div[1]/div/div', '//label[@title="福建省"][1]', '省'],
-            ['//*[@id="address_1582538163410"]/div/div[2]/div/div', '//label[@title="厦门市"][1]', '市'],
-            ['//*[@id="address_1582538163410"]/div/div[3]/div/div', '//label[@title="思明区"][1]', '区'],
-            ["//*[@id='select_1582538939790']/div/div/span[1]", "/html/body/div[8]/ul/div/div[3]/li/label", '本人承诺']
-        ]
-        for dropdown in dropdowns:
-            if NULL in get_text(driver, dropdown[0], dropdown[2]):
-                select_dropdown(driver, *dropdown)
-                time.sleep(1)
-            else:
-                logger.info(f'{dropdown[2]} 已填写')
+    
+    dropdowns = [
+        ['//*[@id="select_1611108284522"]/div/div/span[1]', '//label[@title="在校"][1]', '在校'],
+        ['//*[@id="select_1582538643070"]/div/div/span[1]', '//label[@title="翔安校区 Xiang\'an"][1]', '校区'],
+        ['//*[@id="select_1611110401193"]/div/div/span[1]', '//label[@title="住校内  Yes，on campus"][1]', '校内'],
+        ['//*[@id="select_1611108377024"]/div/div/span[1]', '//label[@title="住校内学生宿舍"][1]', '宿舍'],
+        ['//*[@id="select_1611108445364"]/div/div/span[1]', '//label[@title="翔安笃行09"][1]', '楼'],
+        ['//*[@id="address_1582538163410"]/div/div[1]/div/div', '//label[@title="福建省"][1]', '省'],
+        ['//*[@id="address_1582538163410"]/div/div[2]/div/div', '//label[@title="厦门市"][1]', '市'],
+        ['//*[@id="address_1582538163410"]/div/div[3]/div/div', '//label[@title="翔安区"][1]', '区'],
+        ["//*[@id='select_1582538939790']/div/div/span[1]", "/html/body/div[8]/ul/div/div[3]/li/label", '本人承诺']
+    ]
+    for dropdown in dropdowns:
+        if NULL in get_text(driver, dropdown[0], dropdown[2]):
+            select_dropdown(driver, *dropdown)
+            time.sleep(1)
+        else:
+            logger.info(f'{dropdown[2]} 已填写')
+    
     time.sleep(1)
-    if int(username) != 22920212204392:
-        roomnum = driver.find_element(By.CSS_SELECTOR, '#input_1611108449736 > input')
-        if roomnum.get_attribute('data-str') == '':
-            roomnum.send_keys(room) 
-    if int(username) == 22920212204115:
-        addressToday = driver.find_element(By.CSS_SELECTOR, '#input_1611108030781 > input')
-        if addressToday.get_attribute('data-str') == "厦门大学翔安校区沙美路笃行园区4053":
-            addressToday.send_keys(Keys.CONTROL+'a')
-            addressToday.send_keys(Keys.BACKSPACE)
-            addressToday.send_keys("厦门大学翔安校区沙美路笃行园区_4053")
+    roomnum = driver.find_element(By.CSS_SELECTOR, '#input_1611108449736 > input')
+    if roomnum.get_attribute('data-str') == '':
+        roomnum.send_keys(room) 
+
     # 点击保存按钮
     click_given_xpath(driver, "//span[starts-with(text(),'保存')][1]", "保存")
 
