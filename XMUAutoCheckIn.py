@@ -200,7 +200,7 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
             roomnum.send_keys(room) 
     if int(username) == 22920212204115:
         addressToday = driver.find_element(By.CSS_SELECTOR, '#input_1611108030781 > input')
-        if addressToday.get_attribute == "厦门大学翔安校区沙美路笃行园区4053":
+        if addressToday.get_attribute('data-str') == "厦门大学翔安校区沙美路笃行园区4053":
             addressToday.send_keys(Keys.CONTROL+'a')
             addressToday.send_keys(Keys.BACKSPACE)
             addressToday.send_keys("厦门大学翔安校区沙美路笃行园区_4053")
