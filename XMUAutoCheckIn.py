@@ -15,6 +15,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.keys import Keys
 
 debug = os.getenv("ENV") == "debug"
 
@@ -46,7 +47,7 @@ NULL = '请选择'
 
 
 def random_second() -> int:
-    return random.randrange(start=0, stop=10, step=1)
+    return random.randrange(start=0, stop=3600, step=1)
 
 
 def unix_timestamp() -> int:
@@ -199,7 +200,10 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
             roomnum.send_keys(room) 
     if int(username) == 22920212204115:
         addressToday = driver.find_element(By.CSS_SELECTOR, '#input_1611108030781 > input')
-        addressToday.send_keys("厦门大学翔安校区沙美路笃行园区_4053")
+        if addressToday.get_attribute == "厦门大学翔安校区沙美路笃行园区4053":
+            addressToday.send_keys(Keys.CONTROL+'a')
+            addressToday.send_keys(Keys.BACKSPACE)
+            addressToday.send_keys("厦门大学翔安校区沙美路笃行园区_4053")
     # 点击保存按钮
     click_given_xpath(driver, "//span[starts-with(text(),'保存')][1]", "保存")
 
