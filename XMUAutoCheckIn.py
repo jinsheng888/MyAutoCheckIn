@@ -15,6 +15,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.keys import Keys
 
 debug = os.getenv("ENV") == "debug"
 
@@ -142,7 +143,7 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
     下拉框XPATH     选项XPATH    下拉框描述
     的顺序添加项并提交PR
     """
-    
+
     dropdowns = [
         ['//*[@id="select_1611108284522"]/div/div/span[1]', '//label[@title="在校"][1]', '在校'],
         ['//*[@id="select_1582538643070"]/div/div/span[1]', '//label[@title="翔安校区 Xiang\'an"][1]', '校区'],
@@ -165,7 +166,12 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
     roomnum = driver.find_element(By.CSS_SELECTOR, '#input_1611108449736 > input')
     if roomnum.get_attribute('data-str') == '':
         roomnum.send_keys(room) 
-
+    time.sleep(1)
+    addressToday = driver.find_element(By.CSS_SELECTOR, '#input_1611108030781 > input')
+    if addressToday.get_attribute('data-str') == "仓山区金桔路中天金海岸金爵苑5栋" or addressToday.get_attribute('data-str') == '':
+        addressToday.send_keys(Keys.CONTROL+'a')
+        addressToday.send_keys(Keys.BACKSPACE)
+        addressToday.send_keys("厦门大学翔安校区沙美路笃行园区4053")
     # 点击保存按钮
     click_given_xpath(driver, "//span[starts-with(text(),'保存')][1]", "保存")
 
