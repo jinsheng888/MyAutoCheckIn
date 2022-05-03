@@ -168,9 +168,9 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
         roomnum.send_keys(room) 
     time.sleep(1)
     addressToday = driver.find_element(By.CSS_SELECTOR, '#input_1611108030781 > input')
-    if addressToday.get_attribute('data-str') == "仓山区金桔路中天金海岸金爵苑5栋" or addressToday.get_attribute('data-str') == '':
-        addressToday.send_keys(Keys.CONTROL+'a')
-        addressToday.send_keys(Keys.BACKSPACE)
+    if addressToday.get_attribute('data-str') == '':
+        # addressToday.send_keys(Keys.CONTROL+'a')
+        # addressToday.send_keys(Keys.BACKSPACE)
         addressToday.send_keys("厦门大学翔安校区沙美路笃行园区4053")
     # 点击保存按钮
     click_given_xpath(driver, "//span[starts-with(text(),'保存')][1]", "保存")
