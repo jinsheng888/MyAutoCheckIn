@@ -149,7 +149,7 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
         ['//*[@id="select_1582538643070"]/div/div/span[1]', '//label[@title="翔安校区 Xiang\'an"][1]', '校区'],
         ['//*[@id="select_1611110401193"]/div/div/span[1]', '//label[@title="住校内  Yes，on campus"][1]', '校内'],
         ['//*[@id="select_1611108377024"]/div/div/span[1]', '//label[@title="住校内学生宿舍"][1]', '宿舍'],
-        ['//*[@id="select_1611108445364"]/div/div/span[1]', '//label[@title="翔安笃行09"][1]', '楼'],
+        ['//*[@id="select_1611108445364"]/div/div/span[1]', '//label[@title="翔安国光04"][1]', '楼'],
         ['//*[@id="address_1582538163410"]/div/div[1]/div/div', '//label[@title="福建省"][1]', '省'],
         ['//*[@id="address_1582538163410"]/div/div[2]/div/div', '//label[@title="厦门市"][1]', '市'],
         ['//*[@id="address_1582538163410"]/div/div[3]/div/div', '//label[@title="翔安区"][1]', '区'],
@@ -169,10 +169,10 @@ def checkin(username, passwd, passwd_vpn, email, room, use_vpn=True) -> None:
     
     time.sleep(1)
     addressToday = driver.find_element(By.CSS_SELECTOR, '#input_1611108030781 > input')
-    if addressToday.get_attribute('data-str') == "仓山区金桔路中天金海岸金爵苑5栋" or addressToday.get_attribute('data-str') == '':
+    if addressToday.get_attribute('data-str') ==  addressToday.get_attribute('data-str') == '':
         addressToday.send_keys(Keys.CONTROL+'a')
         addressToday.send_keys(Keys.BACKSPACE)
-        addressToday.send_keys("厦门大学翔安校区沙美路笃行园区4053")
+        addressToday.send_keys("厦门大学翔安校区沙美路国光园区4042")
     # 点击保存按钮
     click_given_xpath(driver, "//span[starts-with(text(),'保存')][1]", "保存")
 
